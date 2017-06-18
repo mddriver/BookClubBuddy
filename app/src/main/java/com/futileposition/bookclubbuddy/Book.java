@@ -28,8 +28,7 @@ class Book {
      *  Getters and Setters Below Here.
     */
 
-
-    public String getTitle() {
+       public String getTitle() {
         return mTitle;
     }
 

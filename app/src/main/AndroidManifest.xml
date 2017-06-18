@@ -19,6 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".NewBookActivity"
+            android:label="@string/title_activity_new_book"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
