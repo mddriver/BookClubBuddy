@@ -1,5 +1,6 @@
 package com.futileposition.bookclubbuddy;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -56,6 +57,22 @@ public class SqlBookDatabase extends SQLiteOpenHelper {
 
     }
 
+    public static void createBook(Context context, String title, String author, int pages, String start_date, String end_date)
+    {
+        SqlBookDatabase dBHelper = new SqlBookDatabase(context);
+        SQLiteDatabase db = dBHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(SqlBookDatabase.COLUMN_NAME_TITLE, title);
+        values.put(SqlBookDatabase.COLUMN_NAME_AUTHOR, author);
+        values.put(SqlBookDatabase.COLUMN_NAME_PAGES, pages);
+        values.put(SqlBookDatabase.COLUMN_NAME_START_DATE, start_date);
+        values.put(SqlBookDatabase.COLUMN_NAME_GOAL_DATE, end_date);
+        db.insert(TABLE_NAME,
+                null,
+                values);
+        db.close();
+    }
 
 
 

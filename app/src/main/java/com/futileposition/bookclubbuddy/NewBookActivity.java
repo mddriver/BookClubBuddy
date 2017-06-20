@@ -68,23 +68,12 @@ public class NewBookActivity extends AppCompatActivity {
                 Date date = new Date();
                 String start_date = dateFormat.format(date);
                 DatePicker goalDatePicker = (DatePicker)findViewById(R.id.goalDatePicker);
-                Date goalAsDate = new Date(goalDatePicker.getYear(), goalDatePicker.getMonth(), goalDatePicker.getDayOfMonth());
+                Date goalAsDate = new Date(goalDatePicker.getYear() - 1900, goalDatePicker.getMonth(), goalDatePicker.getDayOfMonth());
                 String end_date = dateFormat.format(goalAsDate);
 
                 //Create a new SQL Entry with Title, Author, Pages, and Date Finished.
-                SqlBookDatabase dBHelper = new SqlBookDatabase(getApplicationContext());
-                SQLiteDatabase db = dBHelper.getWritableDatabase();
+                SqlBookDatabase.createBook(getApplicationContext(), title, author, pages, start_date, end_date);
 
-                ContentValues values = new ContentValues();
-                values.put(SqlBookDatabase.COLUMN_NAME_TITLE, title);
-                values.put(SqlBookDatabase.COLUMN_NAME_AUTHOR, author);
-                values.put(SqlBookDatabase.COLUMN_NAME_PAGES, pages);
-                values.put(SqlBookDatabase.COLUMN_NAME_START_DATE, start_date);
-                values.put(SqlBookDatabase.COLUMN_NAME_GOAL_DATE, end_date);
-                db.insert (TABLE_NAME,
-                        null,
-                        values);
-                db.close();
             }
         });
     }
